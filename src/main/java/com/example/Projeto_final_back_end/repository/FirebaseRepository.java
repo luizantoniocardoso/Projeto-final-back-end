@@ -23,12 +23,12 @@ public abstract class FirebaseRepository<T> {
         System.out.println("Salvando no Firebase coleção: " + collectionName + ", id: " + id);
         try {
             ApiFuture<WriteResult> future = db.collection(collectionName).document(id).set(entity);
-            WriteResult result = future.get(); // espera até finalizar
+            WriteResult result = future.get();
             System.out.println("Salvo com sucesso em: " + result.getUpdateTime());
         } catch (ExecutionException | InterruptedException e) {
             System.err.println("Erro ao salvar no Firebase: " + e.getMessage());
             e.printStackTrace();
-            Thread.currentThread().interrupt(); // boa prática para InterruptedException
+            Thread.currentThread().interrupt();
             throw new FirebaseOperationException("Erro ao salvar no Firebase", e);
         }
     }

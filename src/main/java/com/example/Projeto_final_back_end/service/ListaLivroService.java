@@ -69,7 +69,7 @@ public class ListaLivroService {
 
     public void delete(String id) {
         try {
-            getOne(id); // Verifica se existe antes de deletar
+            getOne(id);
             listaLivroRepository.deleteById(id);
         } catch (ExecutionException | InterruptedException e) {
             throw new FirebaseOperationException("Erro ao deletar lista de livros", e);
