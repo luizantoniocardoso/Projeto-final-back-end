@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Biblioteca {
     private String id;
     private String nome;
-    private String usuarioId; // Criador (bibliotecário)
+    private String usuarioId;
     private String lastUpdated;
 
     public String getId() {

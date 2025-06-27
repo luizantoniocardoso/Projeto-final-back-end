@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class BibliotecaService {
@@ -42,8 +43,10 @@ public class BibliotecaService {
 
     public void create(Biblioteca biblioteca) {
         try {
+            String UUID_STRING = UUID.randomUUID().toString();
             String now = LocalDateTime.now().format(formatter);
             biblioteca.setLastUpdated(now);
+            biblioteca.setId(UUID_STRING);
             bibliotecaRepository.save(biblioteca.getId(), biblioteca);
         } catch (Exception e) {
             throw new FirebaseOperationException("Erro ao salvar biblioteca", e);
@@ -55,7 +58,6 @@ public class BibliotecaService {
             Biblioteca existente = getOne(id);
             String now = LocalDateTime.now().format(formatter);
 
-            // Copia os campos necessários
             bibliotecaAtualizada.setId(id);
             bibliotecaAtualizada.setLastUpdated(now);
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
@@ -43,9 +44,10 @@ public class ListaLivroService {
     }
 
     public void create(ListaLivro listaLivro) {
-
+            String UUID_STRING = UUID.randomUUID().toString();
             String now = LocalDateTime.now().format(formatter);
             listaLivro.setLastUpdated(now);
+            listaLivro.setId(UUID_STRING);
             listaLivroRepository.save(listaLivro.getId(), listaLivro);
 
     }
